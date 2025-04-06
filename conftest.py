@@ -11,12 +11,12 @@ def pytest_configure(config):
 
 def pytest_html_report_title(report):
     """Customize the title of the HTML report."""
-    report.title = "Automated RBM(Inst) Test Report"
+    report.title = "Automated SauceDemo Test Report"
 
 def pytest_html_results_summary(prefix, summary, postfix):
     """Customize the summary section of the HTML report."""
     prefix.extend(["<p><strong>Test Executed By:</strong> Nikesh(QA Team)</p>"])
-    prefix.extend(["<p><strong>Project:</strong> RBM Selenium Automation Suite</p>"])
+    prefix.extend(["<p><strong>Project:</strong> SauceDemo Selenium Automation Suite</p>"])
 
 def pytest_html_results_table_header(cells):
     """Modify the report table header."""
