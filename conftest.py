@@ -4,6 +4,16 @@ from selenium import webdriver
 from datetime import datetime
 from utils.utils import take_screenshot
 
+
+#Defing the variables used in different modules
+password = "secret_sauce"
+url_inventory_page ="https://www.saucedemo.com/inventory.html"
+url_cart_page = "https://www.saucedemo.com/cart.html"
+url_checkout_page_one = 'https://www.saucedemo.com/checkout-step-one.html'
+url_checkout_page_two = 'https://www.saucedemo.com/checkout-step-two.html'
+url_checkout_complete = 'https://www.saucedemo.com/checkout-complete.html'
+
+
 def pytest_configure(config):
     """Hook to configure the test report settings."""
     config.option.html_path = f"reports/test_report_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.html"
@@ -30,7 +40,7 @@ def pytest_html_results_table_row(report, cells):
 @pytest.fixture(scope="function")
 def driver():
     """Fixture to initialise Webdriver and clean up after test."""
-    URL_LOGIN = "http://103.180.240.24:98/sessions/login"
+    URL_LOGIN = "https://www.saucedemo.com/"
     driver = webdriver.Chrome()
     driver.maximize_window()
     driver.get(URL_LOGIN)

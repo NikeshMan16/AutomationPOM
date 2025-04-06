@@ -12,3 +12,9 @@ class InventoryPage(BasePage):
         self.wait = WebDriverWait(driver, 10)
         self.hamburger_menu = (By.ID, 'react-burger-menu-btn')
         self.logout_button = (By.ID, 'logout_sidebar_link')
+
+
+    def logout_function(self):
+        self.wait.until(EC.visibility_of_element_located(self.hamburger_menu)).click()
+        self.wait.until(EC.visibility_of_element_located(self.logout_button))
+
