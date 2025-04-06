@@ -34,5 +34,8 @@ class BasePage():
     def navigate_to(self, url):
         self.driver.get(url)
 
+    def scroll_to_element(self, element):
+        self.driver.execute_script("arguments[0]scrollIntoView({behaviour:'smooth'});",element)
+
 
 
