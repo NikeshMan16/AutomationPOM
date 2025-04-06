@@ -6,12 +6,6 @@ from utils.utils import take_screenshot
 
 
 #Defing the variables used in different modules
-password = "secret_sauce"
-url_inventory_page ="https://www.saucedemo.com/inventory.html"
-url_cart_page = "https://www.saucedemo.com/cart.html"
-url_checkout_page_one = 'https://www.saucedemo.com/checkout-step-one.html'
-url_checkout_page_two = 'https://www.saucedemo.com/checkout-step-two.html'
-url_checkout_complete = 'https://www.saucedemo.com/checkout-complete.html'
 
 
 def pytest_configure(config):
