@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -43,5 +45,66 @@ class TestInventory:
             assert inventory_page.get_text(current_button) == "Remove"
         except AssertionError:
             pytest.fail(f"Failed to switch to remove text for item: {item_index}")
+
+
+    def test_display_order_price_low_to_high(self, driver):
+        inventory_page = self.initialization_function(driver)
+
+        try:
+            inventory_page.select_container("Price (low to high)")
+            price_elements = driver.find_elements(inventory_page.item_price)
+            prices = [float(price.text.replace("$", "")) for price in price_elements]
+            assert prices == sorted(prices), "Ordering of the items according to prices(low to high) failed"
+
+        except TimeoutException:
+            pytest.fail("Timeout has occurred.")
+
+    def test_display_order_price_high_to_low(self,driver):
+        inventory_page = self.initialization_function(driver)
+        try:
+            inventory_page.select_container("Price (high to low)")
+            price_elements = driver.find_elements(inventory_page.item_price)
+            prices = [float(price.text.replace("$", "")) for price in price_elements]
+            assert prices == sorted(prices,
+            reverse=True), "Ordering of the items according to prices(high to low) failed"
+        except TimeoutException:
+            pytest.fail("Timeout has occurred.")
+
+    def test_display_order_reverse_alphabetical(self, driver):
+        inventory_page = self.initialization_function(driver)
+        try:
+            inventory_page.select_container("Name (Z to A)")
+            name_elements = driver.find_elements(inventory_page.item_name)
+            names = [name.text for name in name_elements]
+            assert names == sorted(names, reverse=True), "Ordering of the items according to Name(Z to A) failed"
+        except TimeoutException:
+            pytest.fail("Timeout has occurred.")
+
+    def test_display_order_alphabetical(self, driver):
+        inventory_page = self.initialization_function(driver)
+        try:
+            inventory_page.select_container("Name (A to Z)")
+            name_elements = driver.find_elements(inventory_page.item_name)
+            names = [name.text for name in name_elements]
+            assert names == sorted(names), "Ordering of the items according to Name(A to Z) failed"
+        except TimeoutException:
+            pytest.fail("Timeout has occurred.")
+
+
+
+    # def test_add_to_cart_items_count(self,driver):
+    #     inventory_page = self.initialization_function(driver)
+    #     add_to_cart_buttons =driver.find_elements(inventory_page.add_to_cart_buttons)
+    #     expected_count =len(add_to_cart_buttons)
+    #     for button in add_to_cart_buttons:
+    #         button.click()
+    #         time.sleep(1) # Waiting for the number update in cart button
+    #     cart_badge = driver.find_element(inventory_page.cart_badge)
+    #     cart_badge_text = inventory_page.get_text(cart_badge)
+    #     actual_count = int(cart_badge_text)
+    #     assert actual_count == expected_count, f"Expected {expected_count} items in cart, but found {actual_count}"
+    #
+    #
+    # def test_remove_from_cart_count
 
 
