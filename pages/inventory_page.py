@@ -22,6 +22,13 @@ class InventoryPage(BasePage):
         self.hamburger_menu = (By.ID, 'react-burger-menu-btn')
         self.logout_button = (By.ID, 'logout_sidebar_link')
 
+        self.select_container = (By.CLASS_NAME, 'select_container')
+        self.product_sort_container = (By.CLASS_NAME, 'product_sort_container')
+        self.item_price = (By.CLASS_NAME, 'inventory_item_price')
+
+
+
+
     def logout_function(self):
         self.wait.until(EC.visibility_of_element_located(self.hamburger_menu)).click()
         self.wait.until(EC.visibility_of_element_located(self.logout_button))
@@ -31,5 +38,12 @@ class InventoryPage(BasePage):
 
     def click_continue_shopping(self):
         self.wait.until(EC.visibility_of_element_located(self.continue_shopping))
+
+
+    def select_container(self,visible_text):
+        self.wait.until(EC.visibility_of_element_located(self.select_container))
+        self.select_dd(self.product_sort_container,visible_text)
+
+
 
 
