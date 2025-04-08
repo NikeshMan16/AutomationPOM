@@ -6,6 +6,9 @@ locked_out_user = 'locked_out_user'
 invalid_username = 'johndiss'
 invalid_password = 'ucantseeme'
 
+# For cart test
+id_item_to_be_added = 'add-to-cart-sauce-labs-backpack'
+
 
 #URLS BEING DEFINED
 url_inventory_page ="https://www.saucedemo.com/inventory.html"
