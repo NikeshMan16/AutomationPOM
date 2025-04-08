@@ -8,7 +8,7 @@ from selenium.common import TimeoutException
 
 from variables_urls import valid_password, valid_username, url_cart_page, url_inventory_page
 
-pytest.mark.usefixtures("driver")
+@pytest.mark.usefixtures("driver")
 class TestInventory:
 
     @staticmethod
